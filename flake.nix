@@ -42,21 +42,22 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         allfeat-node = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux"; # TODO: change to your architecture system
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
             ./nixos/configuration.nix
             # Import home-manager's NixOS module
-            inputs.home-manager.nixosModules.home-manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit inputs outputs; };
+              home-manager.users = {
+                # Import your home-manager configuration
+                allfeat = import ./home-manager/home.nix;
+              };
+            }
           ];
 
-          home-manager = {
-            extraSpecialArgs = { inherit inputs outputs; };
-            users = {
-              # Import your home-manager configuration
-              allfeat = import ../home-manager/home.nix;
-            };
-          };
         };
       };
     };

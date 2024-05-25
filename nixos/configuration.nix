@@ -36,7 +36,6 @@
   zramSwap.enable = true;
 
   environment.systemPackages = with pkgs; [ git ];
-  environment.shells = with pkgs; [ zsh ];
 
   networking.hostName = "allfeat-node";
   networking.domain = "";
@@ -47,9 +46,6 @@
     hardwareClockInLocalTime = true;
   };
 
-  # Uncomment this to use AZERTY keyboard
-  # console.keyMap = "fr";
-
   security.sudo.enable = true;
 
   users.users = {
@@ -59,7 +55,6 @@
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "allfeatmusicblockchain";
       isNormalUser = true;
-      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
