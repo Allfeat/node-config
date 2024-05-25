@@ -40,6 +40,11 @@
   networking.hostName = "allfeat-node";
   networking.domain = "";
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 80 443 9933 9944 8545 30333 ];
+  };
+
   time = {
     # TODO: Change to your timezone.
     timeZone = "Europe/Paris";
@@ -75,12 +80,17 @@
   services.nginx = {
     # TODO: If you want to activate SSL, please enable this.
     enable = false;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
     virtualHosts = {
       # TODO: change to your server name
       "node-endpoint-xx.allfeat.io" = {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://localhost:9944"; };
+        locations."/" = {
+          proxyPass = "http://localhost:9944";
+          proxyWebsockets = true;
+        };
       };
     };
   };
