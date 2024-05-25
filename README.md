@@ -22,8 +22,8 @@ This repository contains a NixOS configuration for setting up a system with the 
 1) Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/allfeat-nixos-config.git
-cd allfeat-nixos-config
+git clone https://github.com/allfeat/allfeat.git
+cd allfeat
 ```
 
 (If you don't have git installed, try `nix-shell -p git`)
