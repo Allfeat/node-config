@@ -33,6 +33,7 @@
   programs.home-manager.enable = true;
   programs.git.enable = true;
   programs.helix.enable = true;
+  programs.zellij.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
