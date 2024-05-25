@@ -9,6 +9,8 @@ This repository contains a NixOS configuration for setting up a system with the 
 - Minimal toolset for Allfeat blockchain node deployment
 - Optimized configuration for server environments
 - Pre-configured user allfeat for node management
+- Nginx with SSL via ACME (disabled by default)
+- Firewall configured for typical Allfeat/Substrate node ports
 
 ## Pre-Requisites
 
@@ -43,6 +45,18 @@ sudo passwd allfeat
 ```
 
 **THIS STEP IS CRUCIAL TO SECURE YOUR NODE AND PREVENT UNAUTHORIZED ACCESS.**
+
+## Configuration Details
+
+### Nginx Configuration
+
+- **Nginx is Disabled by Default**: Nginx can be enabled in the configuration.nix file.
+- **SSL with ACME**: By default, Nginx uses SSL via ACME. Make sure to change the default email address for ACME by setting security.acme.defaults.email.
+- **Disabling SSL**: If you do not want SSL, set both enableACME and forceSSL to false in the Nginx configuration section.
+
+### Firewall Configuration
+
+- **Firewall Enabled by Default**: The firewall is enabled by default and opens the ports commonly used in the context of an Allfeat/Substrate node.
 
 ## Notes
 
