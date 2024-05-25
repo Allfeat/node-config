@@ -72,6 +72,22 @@
     };
   };
 
+  services.nginx = {
+    # TODO: If you want to activate SSL, please enable this.
+    enable = false;
+    virtualHosts = {
+      # TODO: change to your server name
+      "node-endpoint-xx.allfeat.io" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = { proxyPass = "http://localhost:9944"; };
+      };
+    };
+  };
+  security.acme.acceptTerms = true;
+  # TODO: change the default ACME mail.
+  security.acme.defaults.email = "admin+acme@example.com";
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
